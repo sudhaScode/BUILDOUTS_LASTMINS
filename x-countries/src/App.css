@@ -1,0 +1,38 @@
+.card{
+  width: 150px;
+  height: 150px;
+  border: 1px solid black;
+  border-radius: 8px;
+  padding: 5px 10px;
+  margin: 8px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background-color: rgba(171, 237, 171, 0.505);
+  transition: all ease-in-out 0.5s;
+  cursor: pointer;
+  text-align: center;
+  
+}
+h1{
+  padding: 0 !important;
+  margin: 5px !important;
+}
+.card:hover{
+  transform: scale(1.1);
+}
+.image{
+  width: 140px;
+  height: 120px;  
+}
+.info{
+padding: 0;
+margin: 0;
+}
+.App{
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  background-color: rgba(250, 235, 215, 0.244);
+}
