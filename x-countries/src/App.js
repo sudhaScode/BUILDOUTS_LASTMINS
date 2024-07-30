@@ -18,7 +18,7 @@ function App() {
     fetch("https://xcountries-backend.azurewebsites.net/all")
     .then(response=>response.json())
     .then(data=>seCountries(data))
-    .catch(error=>console.log("Fetch failed"))
+    .catch(error=>console.error("Error fetching data"))
   },[])
   return (
     <div className="App">
