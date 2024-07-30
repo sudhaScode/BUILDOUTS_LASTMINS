@@ -18,11 +18,11 @@ function App() {
     fetch("https://xcountries-backend.azurewebsites.net/all")
     .then(response=>response.json())
     .then(data=>seCountries(data))
-    .catch(error=>console.error("Fetch failed"))
+    .catch(error=>console.log("Fetch failed"))
   },[])
   return (
     <div className="App">
-     {countries.map(country=><CountryCard name={country.name} flag={country.flag} abbr= {country.abbr}/>)}
+     {countries.map((country,index)=><CountryCard name={country.name} flag={country.flag} abbr= {country.abbr} key={`${country.name} ${index}`}/>)}
     </div>
   );
 }
