@@ -104,7 +104,7 @@ useEffect(()=>{ //setting up dummy list
     })
  }
   setList(currentPagesList);
-  setSize(placeholder.length);
+  setSize(placeholder.length-1);
 
 },[placeholder]);
 
