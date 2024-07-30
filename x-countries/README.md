@@ -68,3 +68,62 @@ This section has moved here: [https://facebook.github.io/create-react-app/docs/d
 ### `npm run build` fails to minify
 
 This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+
+
+
+import { useEffect, useState } from 'react';
+import './App.css';
+
+const CountryCard = ({name, flag, abbr})=>{
+
+  return <div className="card">
+    <img src={flag} alt={abbr} className='image'/>
+      <h1  style={{fontSize:name.length<15?"1rem":"12px"}}>{name}</h1>
+  </div>
+
+} 
+
+function App() {
+  const [countries, seCountries] = useState([])
+  const [size, setSize] = useState(0);
+  const [list, setList] = useState([]);// dummy list for limted pages 
+  const [activePage, setActivePage] = useState(1);//to track active page as pe the 
+  const [activeIndex, setActiveIndex] = useState(0);// active index as per the list
+
+  /***IMAGES states */
+  const [images, setImages] = useState([]);
+  const [gallary, setGallary] = useState([]);
+  const [firedImages, setFiredImages] = useState(0);
+  // pageCountries
+  /**
+   * had a center array -parent
+   * had dynamic array as per 
+   */
+
+  useEffect(()=>{
+    fetch("https://xcountries-backend.azurewebsites.net/all")
+    .then(response=>response.json())
+    .then(data=>seCountries(data))
+    .catch(error=>console.error("Error fetching data"))
+  },[])
+  return (
+    <div className="App">
+     {countries.map((country,index)=><CountryCard name={country.name} flag={country.flag} abbr= {country.abbr} key={`${country.name} ${index}`}/>)}
+     <div className="pagenantion">
+        <div className="container">
+            <button className="navbutton" disabled={size===placeholder.length-1} onClick={prevHandler}>prev</button>
+            {list.map((stack,index)=>(
+                <button key={`${index} ${stack}`} className={activePage===stack.page?"page-button":""} onClick={()=>clickHandler(stack.page, index)}>{stack.page}</button>
+            ))}
+            <button className="spread-button">.....</button>
+            <button>{size}</button> 
+            <button className="navbutton" disabled={size<1} onClick={nextHandler}>next</button>
+        </div>
+    </div>
+   
+    </div>
+  );
+}
+
+export default App;
+

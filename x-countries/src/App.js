@@ -12,13 +12,13 @@ const CountryCard = ({name, flag, abbr})=>{
 } 
 
 function App() {
-  const [countries, seCountries] = useState([])
+  const [countries, setCountries] = useState([])
 
   useEffect(()=>{
     fetch("https://xcountries-backend.azurewebsites.net/all")
     .then(response=>response.json())
-    .then(data=>seCountries(data))
-    .catch(error=>console.error("Error fetching data"))
+    .then(data=>setCountries(data))
+    .catch(error=>console.error("Error fetching data:", error))
   },[])
   return (
     <div className="App">
