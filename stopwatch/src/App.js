@@ -57,7 +57,7 @@ function App() {
   return (
     <div className="App">
       <h1>Stop Watch</h1>
-      <h3>Time: {format_timer(seconds)}</h3>
+      <h3>{`Time: ${format_timer(seconds)}`}</h3>
       <div className='con-app'>
       <button onClick={()=>isRunning?stopTimer():startTimer()}>{!isRunning?"Start":"Stop"}</button>
       <button onClick={resetTimer}>Reset</button>
