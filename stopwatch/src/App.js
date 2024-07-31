@@ -52,11 +52,12 @@ function App() {
   const format_timer =useCallback((seconds)=>{
   const minutes = Math.floor(seconds/60);
   seconds = seconds%60;
- return `${minutes}:${seconds<10? `0${seconds}`:seconds}`
+ return `${minutes}:${seconds<10?`0${seconds}`:seconds}`
   }, [])
+
   return (
     <div className="App">
-      <h1>Stop Watch</h1>
+      <h1>Stopwatch</h1>
       <h3>{`Time: ${format_timer(seconds)}`}</h3>
       <div className='con-app'>
       <button onClick={()=>isRunning?stopTimer():startTimer()}>{!isRunning?"Start":"Stop"}</button>
