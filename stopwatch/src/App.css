@@ -1,0 +1,10 @@
+.App {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  width: 200px;
+  margin-left: 40%;
+}
+.con-app{
+  margin-left: 35px;
+}
