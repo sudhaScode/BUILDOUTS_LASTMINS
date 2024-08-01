@@ -1,0 +1,19 @@
+#root {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 2rem;
+  text-align: center;
+}
+form{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+button{
+  width: 100px;
+  margin-top: 20px;
+  margin-left: 4rem;
+}
+h1{
+  margin-left: 4rem;
+}
