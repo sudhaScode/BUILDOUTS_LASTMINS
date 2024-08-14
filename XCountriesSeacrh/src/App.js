@@ -5,7 +5,7 @@ import './App.css';
 
 const CountryCard = ({name, flag, abbr})=>{
 
-  return <div className="countryCard">
+  return <div className="card">
     <img src={flag} alt={abbr} className='image'/>
     <h2  style={{fontSize:name.length<15?"1rem":"12px"}}>{name}</h2>
   </div>
@@ -22,11 +22,26 @@ function App() {
    * had a center array -parent
    * had dynamic array as per 
    */
-  const getCountries =useCallback(()=>{
-    fetch("https://xcountries-backend.azurewebsites.net/all")
-    .then(response=>response.json())
-    .then(data=>setPlaceholder(data))
-    .catch(error=>console.error("Error fetching data:", error))
+  const getCountries =useCallback(async()=>{
+   
+    // .then(response=>response.json())
+    // .then(data=>setPlaceholder(data))
+    // .catch(error=>console.error("Error fetching data:", error))
+    try{
+      const response = await  fetch("https://xcountries-backend.azurewebsites.net/all");
+
+    if(response.status ===200){
+      const data = await response.json()
+      setPlaceholder(data)
+      console.log("Fetch successful")
+    }
+    else{
+      throw Error
+    }
+    }
+    catch(error){
+      console.error("API failed")
+    }
   },[])
   const debounce = (event, delay)=>{
     if(timerId.current){
@@ -42,7 +57,7 @@ function App() {
     })
     return filterObj
   },[placeholder])
-  
+
  useEffect(()=>{
      setCountries(filterHandler(seachInput.toLowerCase()))
  }, [seachInput,filterHandler])
@@ -59,7 +74,7 @@ function App() {
   return (
     <div className="App">
         <div className='input-container'> <input className='input' type='text' placeholder='Sreach country name or code' onChange={(event)=>debounce(event, 500)}/></div>
-        <div className="container">
+        <div className="countryCard">
         {countries.map((country,index)=><CountryCard name={country.name} flag={country.flag} abbr= {country.abbr} key={`${country.name} ${index}`}/>)}    
         </div>   
     </div>
