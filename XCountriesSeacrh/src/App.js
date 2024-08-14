@@ -35,7 +35,7 @@ function App() {
     
     }
     else{
-      throw Error
+      throw new Error("API Failed")
     }
     }
     catch(error){
