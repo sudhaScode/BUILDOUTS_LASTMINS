@@ -12,6 +12,7 @@ const CountryCard = ({ name, flag, abbr }) => {
 function App() {
   const [placeholder, setPlaceholder] = useState([]);
   const [countries, setCountries] = useState([]);
+  const timerId = useRef("")
   // pageCountries
   /**
    * had a center array -parent
@@ -39,12 +40,12 @@ function App() {
       console.error("API failed");
     }
   };
-  // const debounce = (event, delay)=>{
-  //   if(timerId.current){
-  //      clearTimeout(timerId.current)
-  //   }
-  //   timerId.current = setTimeout(()=>{setSearchInput(event.target.value)}, delay)
-  // }
+  const debounce = (event, delay)=>{
+    if(timerId.current){
+       clearTimeout(timerId.current)
+    }
+    timerId.current = setTimeout(()=>{filterHandler(event)}, delay)
+  }
   const filterHandler = (event) => {
     let value = event.target.value.toLowerCase();
     const filterObj = placeholder.filter((country) =>country.name.common.toLowerCase().includes(value));
@@ -59,7 +60,7 @@ function App() {
           className="input"
           type="text"
           placeholder="Sreach country name or code"
-          onChange={filterHandler}
+          onChange={(event)=>debounce(event, 500)}
         />
       </div>
       <div className="container">
