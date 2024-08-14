@@ -52,7 +52,6 @@ function App() {
       if(country.name.toLowerCase().includes(value)){
         return country
       }
-      return "";
     })
     setCountries(filterObj)
   }
