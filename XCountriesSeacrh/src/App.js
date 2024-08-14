@@ -66,7 +66,7 @@ function App() {
     <div className="App">
         <div className='input-container'> <input className='input' type='text' placeholder='Sreach country name or code' onChange={filterHandler}/></div>
         <div className="container">
-        {countries.map((country,index)=><CountryCard name={country.name} flag={country.flag} abbr= {country.abbr} key={`${country.name} ${index}`}/>)}    
+        {countries && countries.map((country,index)=><CountryCard name={country.name} flag={country.flag} abbr= {country.abbr} key={`${country.name} ${index}`}/>)}    
         </div>   
     </div>
   );
