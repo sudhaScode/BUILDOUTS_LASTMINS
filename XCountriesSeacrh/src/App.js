@@ -5,7 +5,7 @@ import './App.css';
 
 const CountryCard = ({name, flag, abbr})=>{
 
-  return <div className="card">
+  return <div className="countryCard">
     <img src={flag} alt={abbr} className='image'/>
     <h2  style={{fontSize:name.length<15?"1rem":"12px"}}>{name}</h2>
   </div>
