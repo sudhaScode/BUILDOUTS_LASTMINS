@@ -29,8 +29,10 @@ function App() {
 
     if(response.status === 200){
       const data = await response.json()
+      setPlaceholder(data)// for filtering
+      setCountries(data) //for maping
       console.log("Fetch successful")
-      return data
+    
     }
     else{
       throw Error
@@ -57,9 +59,7 @@ function App() {
   }
 
   useEffect(()=>{
-    const data = getCountries()
-    setPlaceholder(data)// fro filtering
-    setCountries(data) //for maping
+    getCountries()
   },[])
 
   return (
