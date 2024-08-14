@@ -1,13 +1,13 @@
 
 
-import { useEffect, useState, useRef , useMemo} from 'react';
+import { useEffect, useState, useRef , useCallback} from 'react';
 import './App.css';
 
 const CountryCard = ({name, flag, abbr})=>{
 
   return <div className="countryCard">
     <img src={flag} alt={abbr} className='image'/>
-      <h1  style={{fontSize:name.length<15?"1rem":"12px"}}>{name}</h1>
+    <h2  style={{fontSize:name.length<15?"1rem":"12px"}}>{name}</h2>
   </div>
 
 } 
@@ -22,36 +22,38 @@ function App() {
    * had a center array -parent
    * had dynamic array as per 
    */
-  const stackEvents =()=>{
+  const getCountries =useCallback(()=>{
     fetch("https://xcountries-backend.azurewebsites.net/all")
     .then(response=>response.json())
     .then(data=>setPlaceholder(data))
     .catch(error=>console.error("Error fetching data:", error))
-  }
+  },[])
   const debounce = (event, delay)=>{
     if(timerId.current){
        clearTimeout(timerId.current)
     }
     timerId.current = setTimeout(()=>{setSearchInput(event.target.value)}, delay)
   }
-  const filterHandler =(input)=>{
+  const filterHandler =useCallback((input)=>{
     const filterObj = placeholder.filter(country=>{
       if(country.name.toLowerCase().includes(input)){
         return country
       }
     })
     return filterObj
-  }
+  },[placeholder])
+  
  useEffect(()=>{
      setCountries(filterHandler(seachInput.toLowerCase()))
- }, [seachInput])
+ }, [seachInput,filterHandler])
 
 
  useEffect(()=>{
   setCountries(placeholder)
 },[placeholder])
+
   useEffect(()=>{
-    stackEvents()
+    getCountries()
   },[])
 
   return (
