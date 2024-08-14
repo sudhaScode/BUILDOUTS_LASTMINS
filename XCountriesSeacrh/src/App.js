@@ -11,12 +11,9 @@ const CountryCard = ({name, flag, abbr})=>{
   </div>
 
 } 
-
 function App() {
   const [placeholder, setPlaceholder] = useState([]);
   const [countries, setCountries] = useState([])
-  const [seachInput, setSearchInput] = useState("")
-  const timerId = useRef(null)
   // pageCountries
   /**
    * had a center array -parent
@@ -30,11 +27,10 @@ function App() {
     try{
       const response = await  fetch("https://xcountries-backend.azurewebsites.net/all");
 
-    if(response.status ===200){
+    if(response.status === 200){
       const data = await response.json()
-      setPlaceholder(data)// fro filtering
-      setCountries(data) //for maping
       console.log("Fetch successful")
+      return data
     }
     else{
       throw Error
@@ -62,13 +58,15 @@ function App() {
   }
 
   useEffect(()=>{
-    getCountries()
+    const data = getCountries()
+    setPlaceholder(data)// fro filtering
+    setCountries(data) //for maping
   },[])
 
   return (
     <div className="App">
         <div className='input-container'> <input className='input' type='text' placeholder='Sreach country name or code' onChange={filterHandler}/></div>
-        <div className="countryCard">
+        <div className="container">
         {countries.map((country,index)=><CountryCard name={country.name} flag={country.flag} abbr= {country.abbr} key={`${country.name} ${index}`}/>)}    
         </div>   
     </div>
