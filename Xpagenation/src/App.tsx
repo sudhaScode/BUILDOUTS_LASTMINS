@@ -23,6 +23,7 @@ function App() {
       const data = await response.json()
       // console.log(data[0])
       setEmpData(data)
+      // throw new Error("Failed fetch")
     }
     }
     catch(error){

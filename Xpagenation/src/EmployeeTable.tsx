@@ -29,11 +29,11 @@ const EmployeeTable:React.FC<Porps>=({tableData})=>{
          <tbody>
            
                {tableData && tableData.map((data, index)=><>
-                <tr>
-                <td key={index}>{data.id}</td>
-                <td key={index}>{data.name}</td>
-                <td key={index}>{data.email}</td>
-                <td key={index}>{data.role}</td>
+                <tr key={index}>
+                <td >{data.id}</td>
+                <td >{data.name}</td>
+                <td >{data.email}</td>
+                <td >{data.role}</td>
                 </tr>
                </>)}
           
