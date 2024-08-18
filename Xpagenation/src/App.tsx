@@ -25,10 +25,12 @@ function App() {
       setEmpData(data)
       // throw new Error("Failed fetch")
     }
-    }
-    catch(error){
+    else{
       window.alert("failed to fetch data")
-      console.error(`Data Fetch failed ${error}`)
+    }
+    }
+    catch{
+      window.alert("failed to fetch data")
     }
   }
   const updateTable = useCallback(() => {
