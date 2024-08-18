@@ -1,0 +1,23 @@
+.table{
+    width: 99vw;
+    border-collapse: collapse;
+    border-bottom: 3px solid rgb(0,152,121);
+}
+
+th, td {
+    padding: 5px; 
+    text-align: left;
+    border-bottom: 1px solid #0000002c; /* Match the color to your theme */
+  }
+  
+  tbody {
+    background-color: rgb(244,244,244);
+ 
+  }
+.thead{
+    background: rgb(0,152,121);     
+    color: white;
+    padding: 0;
+    margin: 0;
+    gap: 0;
+}
