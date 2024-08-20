@@ -1,0 +1,32 @@
+
+.navlinks a {
+  color: #102851;
+  text-decoration: none;
+}
+
+.navlinks a.active {
+  text-decoration: underline;
+  font-size: 1.1rem;
+}
+
+@media (max-width: 900px) {
+  .navlinks {
+    background: #102851;
+    position: fixed;
+    top: 0;
+    right: 0;
+    z-index: 9999;
+    width: 30vw;
+    height: 100vh;
+    transition: transform 600ms ease;
+    transform: translateX(100%);   
+  }
+
+  .navlinks.active {
+    transform: translateX(0);
+  }
+
+  .navlinks a {
+    color: #fff;
+  }
+}
